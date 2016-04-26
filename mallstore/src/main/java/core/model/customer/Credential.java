@@ -1,4 +1,4 @@
-package domain.model.customer;
+package core.model.customer;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -56,5 +56,13 @@ public class Credential {
                 .append(username)
                 .append(password)
                 .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Credential{");
+        sb.append("username='").append(username).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

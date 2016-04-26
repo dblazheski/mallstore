@@ -1,4 +1,4 @@
-package domain.model.customer;
+package core.model.customer;
 
 import org.junit.Before;
 import org.junit.Test;

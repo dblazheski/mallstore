@@ -1,4 +1,4 @@
-package domain.model.order;
+package core.model.order;
 
 /**
  * Created by DeKi on 2/2/2016.

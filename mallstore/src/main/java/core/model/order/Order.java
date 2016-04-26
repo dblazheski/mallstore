@@ -1,6 +1,7 @@
-package domain.model.order;
+package core.model.order;
 
-import domain.model.customer.Customer;
+import core.model.EntityId;
+import core.model.customer.Customer;
 
 import java.util.Date;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
 //Entity
 public class Order {
 
-    private Long id;
+    private EntityId entityId;
     private String customerId;
     private Customer customer;
     private Set<OrderItem> orderedItems;

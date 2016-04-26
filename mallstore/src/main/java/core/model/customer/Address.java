@@ -1,4 +1,4 @@
-package domain.model.customer;
+package core.model.customer;
 
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -12,9 +12,9 @@ public class Address {
 
     private final String street;
     private final String number;
-    private final int zip;
+    private final Integer zip;
 
-    public Address(String street, String number, int zip) {
+    public Address(String street, String number, Integer zip) {
         Validate.notNull(street, "Street not specified.");
         Validate.notNull(number, "Street Number not specified");
         if(zip < 0) {
@@ -33,7 +33,7 @@ public class Address {
         return new Address(this.street, number, this.zip);
     }
 
-    public Address changeZip(int zip) {
+    public Address changeZip(Integer zip) {
         return new Address(this.street, this.number, zip);
     }
 
@@ -41,7 +41,7 @@ public class Address {
         return street;
     }
 
-    public int getZip() {
+    public Integer getZip() {
         return zip;
     }
 
@@ -71,5 +71,15 @@ public class Address {
                 .append(number)
                 .append(zip)
                 .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Address{");
+        sb.append("street='").append(street).append('\'');
+        sb.append(", number='").append(number).append('\'');
+        sb.append(", zip=").append(zip);
+        sb.append('}');
+        return sb.toString();
     }
 }
