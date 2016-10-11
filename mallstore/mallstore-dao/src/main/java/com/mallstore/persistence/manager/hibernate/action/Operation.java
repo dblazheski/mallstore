@@ -3,7 +3,6 @@ package com.mallstore.persistence.manager.hibernate.action;
 import com.mallstore.domain.model.PersistableObject;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,14 +15,15 @@ import javax.persistence.PersistenceException;
 public abstract class Operation {
 
   private final static Logger logger = LoggerFactory.getLogger(Operation.class);
-  SessionFactory sessionFactory;
-  Session session;
+  protected Session session;
 
+  public Operation(Session session) {
+    this.session = session;
+  }
 
   public <T extends PersistableObject> void execute(T object) throws PersistenceException {
     Transaction transaction = null;
     try {
-      session = sessionFactory.openSession();
       transaction = session.beginTransaction();
       executeAction(object);
       transaction.commit();

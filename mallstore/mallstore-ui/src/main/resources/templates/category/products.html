@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<table>
+    <tr th:each="product : ${products}">
+        <td><label th:text="${product.name}"></label></td>
+        <td><label th:text="${product.category.name}"></label></td>
+        <td><label th:href="@{product.category.name}"></label></td>
+    </tr>
+</table>
+<table th:each="paginationItem : ${pagination}">
+    <tr><a th:href="@{'/category/books/' + ${paginationItem} + '/' + ${size}}">${paginationItem}</a></tr>
+</table>
+</body>
+</html>

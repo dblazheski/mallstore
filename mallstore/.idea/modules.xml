@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Documents/mallstore/mallstore/mallstore.iml" filepath="$USER_HOME$/Documents/mallstore/mallstore/mallstore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mallstore.iml" filepath="$PROJECT_DIR$/mallstore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mallstore-dao/mallstore-dao.iml" filepath="$PROJECT_DIR$/mallstore-dao/mallstore-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mallstore-domain/mallstore-domain.iml" filepath="$PROJECT_DIR$/mallstore-domain/mallstore-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mallstore-ui/mallstore-ui.iml" filepath="$PROJECT_DIR$/mallstore-ui/mallstore-ui.iml" />
     </modules>
   </component>
 </project>

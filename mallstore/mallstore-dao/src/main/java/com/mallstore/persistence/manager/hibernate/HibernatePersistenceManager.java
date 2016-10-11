@@ -50,15 +50,15 @@ public class HibernatePersistenceManager implements PersistenceManager {
   }
 
   public <T extends PersistableObject> void create(T entity) {
-    new SaveOperation().execute(entity);
+    new SaveOperation(sessionFactory.openSession()).execute(entity);
   }
 
   public <T extends PersistableObject> void update(T entity) {
-    new SaveOperation().execute(entity);
+    new SaveOperation(sessionFactory.openSession()).execute(entity);
   }
 
   public <T extends PersistableObject> void delete(T entity) {
-    new DeleteOperation().execute(entity);
+    new DeleteOperation(sessionFactory.openSession()).execute(entity);
   }
 
   public <T> T getById(Class<T> entity, EntityId id) {
@@ -71,6 +71,30 @@ public class HibernatePersistenceManager implements PersistenceManager {
     return session.createQuery(query).list();
   }
 
+  public List executeQueryWithParams(String query, Map<String, Object> params) {
+    Session session = sessionFactory.openSession();
+    Query qry = session.createQuery(query);
+    if (params != null) {
+      for (Map.Entry<String, Object> param : params.entrySet()) {
+        qry.setParameter(param.getKey(), param.getValue());
+      }
+    }
+    return qry.list();
+  }
+
+  public List getQueryPaginationResults(String query, Map<String, Object> queryParams, int pageNumber, int pageSize) {
+    Session session = sessionFactory.openSession();
+    Query qry = session.createQuery(query);
+    if (queryParams != null) {
+      for (Map.Entry<String, Object> param : queryParams.entrySet()) {
+        qry.setParameter(param.getKey(), param.getValue());
+      }
+    }
+    qry.setFirstResult((pageNumber - 1) * pageSize);
+    qry.setMaxResults(pageSize);
+    return qry.list();
+  }
+
   @SuppressWarnings("unchecked")
   public <T extends PersistableObject> List<T> getAll(Class<T> entity) {
     String tableName = getTableName(entity);
@@ -79,7 +103,7 @@ public class HibernatePersistenceManager implements PersistenceManager {
     return qry.list();
   }
 
-  public Object getUniqeResult(String query, Map<String, Object> params) {
+  public Object getUniqueResult(String query, Map<String, Object> params) {
     Session session = sessionFactory.openSession();
     Query qry = session.createQuery(query);
     if (params != null) {

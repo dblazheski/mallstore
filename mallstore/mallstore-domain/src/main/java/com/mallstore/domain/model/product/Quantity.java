@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Quantity {
 
-  private final Integer quantity;
+  private Integer quantity;
 
   public Quantity(Integer quantity) {
     validateQuantity(quantity);
@@ -65,5 +65,9 @@ public class Quantity {
     return new HashCodeBuilder(17, 37)
         .append(quantity)
         .toHashCode();
+  }
+
+  protected Quantity() {
+
   }
 }

@@ -69,6 +69,10 @@ public interface PersistenceManager {
    */
   List executeQuery(String query);
 
+  List executeQueryWithParams(String query,  Map<String, Object> params);
+
+  List getQueryPaginationResults(String query, Map<String, Object> queryParams, int pageNumber, int pageSize);
+
   /**
    * Executes Hibernate Query to the DB.
    *
@@ -76,5 +80,5 @@ public interface PersistenceManager {
    * @param params Map of key-value parameters.
    * @return
    */
-  Object getUniqeResult(String query, Map<String, Object> params);
+  Object getUniqueResult(String query, Map<String, Object> params);
 }

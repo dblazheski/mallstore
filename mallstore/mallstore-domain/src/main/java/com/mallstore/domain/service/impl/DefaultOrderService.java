@@ -22,7 +22,7 @@ public class DefaultOrderService implements OrderService {
         return orderRepository.getOrderById(id);
     }
 
-    public List<Order> getAllOrdersFromLogin(String username) {
-        return null;
+    public List<Order> getAllOrdersFromCustomer(EntityId customerId) {
+        return orderRepository.getAllOrdersByCustomerId(customerId);
     }
 }

@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by DeKi on 8/22/2016.
  */
 @Controller
+@RequestMapping(path = "/customer")
 public class CustomerController {
 
   private final static String PATH = "customer/";
@@ -34,12 +36,12 @@ public class CustomerController {
   @Autowired
   private CustomerValidator customerValidator;
 
-  @RequestMapping(value = PATH + "register", method = RequestMethod.GET)
+  @RequestMapping(value = "/register", method = RequestMethod.GET)
   public String renderForm(CustomerDto customerDto) {
     return PATH + "register";
   }
 
-  @RequestMapping(value = PATH + "register", method = RequestMethod.POST)
+  @RequestMapping(value = "/register", method = RequestMethod.POST)
   public String registerNewCustomer(@Valid @ModelAttribute CustomerDto customer, BindingResult bindingResult) {
 
     customerValidator.validate(customer, bindingResult);
@@ -58,11 +60,11 @@ public class CustomerController {
     return PATH + "success";
   }
 
-  @RequestMapping(value = PATH + "{id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   public String getCustomerById(Model model, @PathVariable String id) {
     Customer customer = customerService.getCustomerById(new EntityId(id));
-    for(EntityId orderId : customer.getOrderIds()) {
-      Order order = orderService.getOrderById(orderId);
+    List<Order> orders = orderService.getAllOrdersFromCustomer(customer.getId());
+    for(Order order : orders) {
       order.getId();
      }
     CustomerDto customerDto = new CustomerAssembler().toDTO(customer);

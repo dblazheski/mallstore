@@ -11,5 +11,5 @@ import java.util.List;
 public interface OrderService {
 
   Order getOrderById(EntityId id);
-  List<Order> getAllOrdersFromLogin(String username);
+  List<Order> getAllOrdersFromCustomer(EntityId customerId);
 }

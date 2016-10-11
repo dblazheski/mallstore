@@ -36,7 +36,7 @@ public class DefaultCustomerRepository implements CustomerRepository {
   public Customer getCustomerByLogin(String login) {
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("username", login);
-    return (Customer) persistenceManager.getUniqeResult(GET_LOGIN, params);
+    return (Customer) persistenceManager.getUniqueResult(GET_LOGIN, params);
   }
 
   public Customer getCustomerById(EntityId id) {

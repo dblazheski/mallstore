@@ -28,6 +28,7 @@ public class HibernateSessionFactory {
         .addAnnotatedClass(Order.class)
         .addAnnotatedClass(Product.class)
         .addAnnotatedClass(OrderItem.class)
+            .addAnnotatedClass(Category.class)
         .buildSessionFactory(serviceRegistry);
   }
 }

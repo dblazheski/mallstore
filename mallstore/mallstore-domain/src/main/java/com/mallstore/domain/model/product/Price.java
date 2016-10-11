@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Price {
 
-  private final Float price;
+  private Float price;
 
   public Price(Float price) {
     validatePrice(price);
@@ -69,5 +69,8 @@ public class Price {
     return new HashCodeBuilder(17, 37)
         .append(price)
         .toHashCode();
+  }
+
+  protected Price() {
   }
 }
