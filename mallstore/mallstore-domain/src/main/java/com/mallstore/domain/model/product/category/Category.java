@@ -54,7 +54,7 @@ public class Category implements PersistableObject {
         return parentCategory.getBaseCategories();
     }
 
-    private boolean hasSubCategories() {
+    public boolean hasSubCategories() {
         return getSubCategories().size() > 0;
     }
 
