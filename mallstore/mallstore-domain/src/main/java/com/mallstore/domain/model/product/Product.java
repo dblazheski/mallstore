@@ -81,4 +81,24 @@ public class Product implements PersistableObject {
   public void setCost(Price cost) {
     this.cost = cost;
   }
+
+  public boolean hasEnoughQty(Quantity quantity) {
+    return this.qty.getQuantity() >= quantity.getQuantity();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Product product = (Product) o;
+
+    return entityId != null ? entityId.equals(product.entityId) : product.entityId == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    return entityId != null ? entityId.hashCode() : 0;
+  }
 }
