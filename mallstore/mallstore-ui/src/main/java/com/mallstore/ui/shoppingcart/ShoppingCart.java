@@ -13,7 +13,7 @@ public class ShoppingCart {
     private Price total;
 
     public ShoppingCart() {
-
+        this.total = new Price(0.0F);
     }
 
     public void removeItemFromCart(EntityId id) {
